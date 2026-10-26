@@ -1,6 +1,6 @@
 ---
 title: Modular 18650 Battery Housing
-summary: Custom 4-layer PCB and C++ firmware for closed-loop brushless motor control.
+summary: 
 tags: [C++, STM32, KiCad, FOC]
 repo: https://github.com/yourusername/motor-driver
 ---
@@ -10,25 +10,22 @@ repo: https://github.com/yourusername/motor-driver
 
 ![Photo of the assembled board]({{ "/assets/img/motor-driver.jpg" | relative_url }})
 
-## The problem
+## Problem description
 
-What were you trying to build, and why? One or two sentences.
+I collect and recycle 18650 batteries from used disposable e-cigarettes. A common issue with storing lithium batteries is handling them safely to prevent short circuits or punctures.
 
-## Hardware
+The goal of this project was to design a 3D printable battery holding cell that is lightweight and modular. I liked the idea of a design that used interlocking rails so you can attach as many as you'd like and store them together.
 
-Describe the design: MCU, gate driver, current sensing, power stage, board layers. Link or embed the schematic and a layout screenshot.
+I first started with a simple cylinder with four connection points. This design required printing male and female cells, and alternating them to create a grid. It was a good proof of concept, but the rails could only slide in from one side and there was lots of wasted space. I realized a hexagonal arrangement would save space so I started over again.
 
-## Firmware
+After another 20 iterations or so, I arrived at this hexagonal design. The rails allow for entry/removal from either side, and the cell alternates male/female connections so only one cell needs to be printed.
 
-Describe the approach: control loop rate, how you handled interrupts and timing, how you wrote the peripheral drivers. Mention anything written from the datasheet rather than a library.
+The design was mostly finalized but took several more prints to get the tolerances just right. Once it felt perfect, I printed them in bulk to store all my cells together.
 
 ## Results
 
-Numbers and evidence: loop frequency, measured current, scope captures, a demo video.
+In retrospect, the design seems overengineered. I think it would be more convenient to forego the interlocking modular design for a simple cylinder that can be stored in a 3D printed frame. As the amount of cells attached to the group increases, it becomes more difficult to slide them on and off, and the PLA rails are susceptible to breaking off and wearing down. Ultimately the project gave me lots of experience working with Fusion, and I feel particularly more comfortable with designing interlocking parts and understanding tolerances for rails.
 
-## What went wrong
-
-The most important section. Describe a real bug, such as a brownout under load or noise on an ADC line, how you diagnosed it, and what you changed.
 
 ## What I'd do differently
 
