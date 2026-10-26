@@ -29,7 +29,7 @@ img, video { max-width: 100%; height: auto; border-radius: 6px; border: 1px soli
 code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.9em; }
 pre { background: var(--card); border: 1px solid var(--line); padding: 14px; overflow-x: auto; border-radius: 6px; }
 
-.site-header { border-bottom: 1px solid var(--line); }
+.site-header { border-bottom: 5px solid var(--line); }
 .site-header .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; }
 .brand { font-weight: 700; text-decoration: none; color: var(--fg); }
 nav a { margin-left: 18px; text-decoration: none; color: var(--muted); }
@@ -64,4 +64,70 @@ h2 { margin-top: 2.2em; }
 @media (max-width: 560px) {
   .hero h1 { font-size: 1.8rem; }
   nav a { margin-left: 12px; }
+}
+
+
+.img-small  { max-width: 320px; }
+.img-medium { max-width: 420px; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+.two-col img { width: 100%; }
+.two-col.reverse .text { order: 2; }
+
+@media (max-width: 640px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+.img-center { display: block; margin: 1rem auto; margin-top: 24px; margin-bottom: 24px }
+
+.img-right {
+  float: right;
+  width: 45%;
+  margin: 12px 0 12px 24px;
+}
+
+.img-left {
+  float: left;
+  width: 45%;
+  margin: 12px 24px 12px 0px;
+}
+
+
+@media (max-width: 560px) {
+  .img-right {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 12px 0;
+  }
+
+  .img-left {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 12px 0;
+  }
+}
+
+
+.img-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 1.5rem 0;
+}
+.img-row p { display: contents; }   /* lets images sit directly in the grid */
+.img-row img {
+  width: 100%;
+  aspect-ratio: 4 / 3;     /* same shape for every image */
+  object-fit: cover;       /* crop to fit, no stretching */
+  margin: 0;
 }

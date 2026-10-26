@@ -3,7 +3,7 @@ tagline: CS grad building robotics hardware and low-level C++ firmware
 description: Portfolio of embedded, electronics and robotics projects.
 email: 4aidanevans@gmail.com
 github: aid4n-e
-linkedin: yourusername
+linkedin: 4aidanevans
 
 url: "https://aid4n-e.github.io"
 baseurl: ""
@@ -24,3 +24,4 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - tainted_shim.rb

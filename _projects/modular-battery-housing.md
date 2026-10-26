@@ -1,5 +1,5 @@
 ---
-title: Brushless Motor Driver
+title: Modular 18650 Battery Housing
 summary: Custom 4-layer PCB and C++ firmware for closed-loop brushless motor control.
 tags: [C++, STM32, KiCad, FOC]
 repo: https://github.com/yourusername/motor-driver
