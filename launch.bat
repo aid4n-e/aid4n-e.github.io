@@ -1,0 +1,1 @@
+bundle exec ruby -r ./tainted_shim.rb -S jekyll serve --force_polling

@@ -4,6 +4,7 @@ title: About
 ---
 # About
 
+<!--
 <div class="todo" markdown="1">
 **Edit me:** replace this text with your own. Keep it short and direct.
 </div>
@@ -21,7 +22,7 @@ I'm a computer science student graduating soon, and my degree is in software. Al
 ## Résumé
 
 [Download my résumé (PDF)]({{ '/assets/resume.pdf' | relative_url }})
-
+-->
 ## Contact
 
 - Email: [{{ site.email }}](mailto:{{ site.email }})
