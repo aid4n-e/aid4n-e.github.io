@@ -1,7 +1,7 @@
 ---
 title: Toyota Stereo Aux Injection
 summary: AUX jack soldered directly to a 2003 Matrix console.
-tags: [Mods, Audio]
+tags: [Audio, Electronics]
 ---
 
 ## Problem

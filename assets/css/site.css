@@ -1,27 +1,22 @@
 :root {
-  --bg: #fafaf8;
-  --fg: #1c1e21;
-  --muted: #5d636b;
-  --accent: #0b6e4f;
-  --card: #ffffff;
-  --line: #e2e2dc;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121414;
-    --fg: #e8eae8;
-    --muted: #9aa19d;
-    --accent: #4fd1a1;
-    --card: #1b1e1d;
-    --line: #2c312f;
-  }
+  --bg: #121414;
+  --fg: #e8eae8;
+  --muted: #d5e1da;
+  --accent: #4fd1a1;
+  --card: #1b1e1d;
+  --line: #b6cbc5;
 }
 * { box-sizing: border-box; }
+html { scroll-padding-top: 80px; }   /* #papers, #projects etc. land below the sticky header */
 body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
   font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;        /* accounts for mobile browser toolbars */
+  display: flex;
+  flex-direction: column;
 }
 .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 a { color: var(--accent); }
@@ -29,36 +24,145 @@ img, video { max-width: 100%; height: auto; border-radius: 6px; border: 1px soli
 code, pre { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.9em; }
 pre { background: var(--card); border: 1px solid var(--line); padding: 14px; overflow-x: auto; border-radius: 6px; }
 
-.site-header { border-bottom: 5px solid var(--line); }
+.site-header {
+  position: sticky;                   /* follows the window as you scroll */
+  top: 0;
+  z-index: 10;                        /* stays above the page content */
+  background: var(--bg);              /* solid bar across the full window width */
+  border-bottom: 5px solid var(--line);
+}
 .site-header .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; padding-bottom: 16px; }
 .brand { font-weight: 700; text-decoration: none; color: var(--fg); }
 nav a { margin-left: 18px; text-decoration: none; color: var(--muted); }
 nav a:hover { color: var(--accent); }
 
-main { padding-top: 40px; padding-bottom: 60px; }
+main { padding-top: 40px; padding-bottom: 60px; flex: 1; width: 100%; }
 .hero h1 { font-size: 2.4rem; line-height: 1.2; margin: 30px 0 12px; }
 .hero p { font-size: 1.2rem; color: var(--muted); max-width: 40em; }
 
 h2 { margin-top: 1.5em; }
 .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 .card {
-  display: block; text-decoration: none; color: inherit;
-  background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px;
-  transition: border-color .15s;
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.202) 0%,
+      rgba(225, 245, 250, 0.218) 50%,
+      rgba(190, 225, 235, 0.239) 100%
+    );
+
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 30px;
+
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.9),
+    inset 0 -1px 3px rgba(80,150,180,.15),
+    0 4px 12px rgba(30,100,120,.12);
+
+  transition: all .2s ease;
 }
-.card:hover { border-color: var(--accent); }
+
+.card:hover {
+  border-color: rgba(120,200,220,.8);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(188, 188, 188, 0.548),
+      rgba(151, 151, 151, 0.6)
+    );
+
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,1),
+    0 6px 20px rgba(50,150,180,.2),
+    0 0 12px rgba(100,200,220,.15);
+
+  transform: translateY(-2px);
+}
 .card h3 { margin: 0 0 6px; }
 .card p { margin: 0 0 10px; color: var(--muted); font-size: 0.95rem; }
 
 .tag { display: inline-block; font-size: 0.78rem; padding: 2px 9px; margin: 0 6px 6px 0; border: 1px solid var(--line); border-radius: 99px; color: var(--muted); }
 .lede { font-size: 1.15rem; color: var(--muted); }
 .back a { text-decoration: none; }
-.button { display: inline-block; padding: 8px 16px; border: 1px solid var(--accent); border-radius: 6px; text-decoration: none; }
-.button:hover { background: var(--accent); color: var(--bg); }
+.button {
+  display: inline-block;
+  position: relative;
+  padding: 9px 20px;
+
+  color: #57686e;
+  text-decoration: none;
+  font-weight: 600;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.95) 0%,
+      rgba(220,245,250,.75) 45%,
+      rgba(170,220,230,.65) 100%
+    );
+
+  border: 1px solid rgba(190,190,190,.7);
+  border-radius: 10px;
+
+  box-shadow:
+    inset 0 2px 3px rgba(255,255,255,.95),
+    inset 0 -2px 4px rgba(70,150,175,.2),
+    0 2px 6px rgba(30,100,120,.2);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  transition: all .2s ease;
+}
+
+.button:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.5),
+      rgba(200,200,200,0.5)
+    );
+
+  border-color: rgba(200, 200, 200, 0.9);
+
+  box-shadow:
+    inset 0 2px 4px white,
+    0 0 12px rgba(160,160,160,.4),
+    0 3px 8px rgba(100,100,100,.25);
+
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(1px);
+
+  box-shadow:
+    inset 0 2px 6px rgba(100,100,120,.25),
+    0 1px 2px rgba(100,100,120,.15);
+}
 
 .todo { background: rgba(230, 170, 30, .15); border-left: 4px solid #e6aa1e; padding: 2px 14px; border-radius: 4px; font-size: 0.95rem; }
 
-.site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+.site-footer {
+  position: sticky;                   /* follows the bottom of the window */
+  bottom: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 .site-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-top: 20px; padding-bottom: 20px; }
 
 @media (max-width: 560px) {
@@ -130,4 +234,100 @@ h2 { margin-top: 1.5em; }
   aspect-ratio: 4 / 3;     /* same shape for every image */
   object-fit: cover;       /* crop to fit, no stretching */
   margin: 0;
+}
+
+/* ---- Home page background video ---- */
+.bg-video {
+  --video-blend: clamp(300px, 12vw, 220px);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: calc(50% + var(--video-blend));
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+  border: 0;
+  border-radius: 0;
+  opacity: 0.5;
+  filter: blur(16px) saturate(1.8) brightness(0.9);
+  transform: scale(1.1);
+}
+
+.bg-left {
+  left: 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0,
+    black calc(100% - var(--video-blend) * 2),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    black 0,
+    black calc(100% - var(--video-blend) * 2),
+    transparent 100%
+  );
+}
+
+.bg-right {
+  right: 0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black calc(var(--video-blend) * 2)
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black calc(var(--video-blend) * 2)
+  );
+}
+
+/* Solid center column with a fade into the video on each side */
+.video-overlay {
+  --solid: 1000px;   /* width of the solid center block */
+  --fade: 150px;    /* width of each fade */
+  --edge: 85%;      /* how much page color covers the video right at the block's edge */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--solid);
+  transform: translateX(-50%);
+  z-index: -1;
+  /* Frutiger Aero glass */
+    --glass-hi:     rgba(27, 39, 46, 0.7);
+    --glass-lo:     rgba(41, 61, 78, 0.738);
+    --glass-edge:   rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, .55);
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.277) 0%, rgba(255,255,255,0) 38%),   /* diagonal sheen */
+    linear-gradient(180deg, var(--glass-hi), var(--glass-lo));
+  -webkit-backdrop-filter: blur(30px) saturate(1.6);
+  backdrop-filter: blur(30px) saturate(1.6);
+  box-shadow:
+    0 0 60px var(--glass-shadow),
+    inset 1px 0 0 var(--glass-edge),
+    inset -1px 0 0 var(--glass-edge);
+}
+
+/* the two fades, attached to the block's left and right edges */
+.video-overlay::before,
+.video-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--fade);
+}
+.video-overlay::before {
+  right: 100%;
+  background: linear-gradient(to right, transparent,
+              color-mix(in srgb, var(--bg) var(--edge), transparent));
+}
+.video-overlay::after {
+  left: 100%;
+  background: linear-gradient(to left, transparent,
+              color-mix(in srgb, var(--bg) var(--edge), transparent));
 }

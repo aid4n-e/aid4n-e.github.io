@@ -1,6 +1,6 @@
 ---
 title: Modular 18650 Battery Housing
-summary: 
+summary: A 3D printed modular case used to store and protect recycled lithium batteries.
 tags: [CAD, Electronics]
 ---
 

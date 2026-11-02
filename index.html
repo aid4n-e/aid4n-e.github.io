@@ -2,11 +2,64 @@
 layout: default
 title: Home
 ---
+<!-- BACKGROUND VIDEOS: two different random clips from assets/clips/, one per side -->
+<video id="bg-video-left"  class="bg-video bg-left"  muted loop playsinline preload="auto"></video>
+<video id="bg-video-right" class="bg-video bg-right" muted loop playsinline preload="auto"></video>
+<div class="video-overlay"></div>
+
+<script>
+  const clips = [{% for f in site.static_files %}{% if f.path contains '/assets/clips/' %}"{{ f.path | relative_url }}",{% endif %}{% endfor %}];
+  const sideVideos = document.querySelectorAll('.bg-video');
+  const saveData = navigator.connection && navigator.connection.saveData;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Below ~1000px wide the center column covers the whole screen, so the videos
+  // would be invisible: don't download them at all.
+  const wideEnough = window.innerWidth > 1000;
+
+  if (!clips.length || saveData || reduceMotion || !wideEnough) {
+    sideVideos.forEach(function (v) { v.remove(); });
+    document.querySelector('.video-overlay').remove();
+  } else {
+    // Pick two different clips (the same one only if there is just one clip)
+    const a = Math.floor(Math.random() * clips.length);
+    const b = clips.length > 1
+      ? (a + 1 + Math.floor(Math.random() * (clips.length - 1))) % clips.length
+      : a;
+    const picks = [a, b];
+    sideVideos.forEach(function (v, i) {
+      v.src = clips[picks[i]];
+      v.play().catch(function () {});
+    });
+  }
+</script>
+
 <section class="hero">
   <h1>{{ site.tagline }}</h1>
-  <p>I'm finishing a computer science degree and have spent years designing, building and debugging electronics as a hobbyist.</p>
+  <p>I'm a computer science student with a passion for electronics!<br>
+    I also love music and sound design, game development, analog tech, and the outdoors.</p>
   <!--<p><a class="button" href="{{ '/about/' | relative_url }}">About me</a></p> -->
 </section>
+
+
+
+<!-- PAPERS -->
+
+<h2 id="papers">Papers</h2>
+
+  <a class="card" href="https://doi.org/10.5281/zenodo.23321293" target="_blank" rel="noopener">
+    <h3>Algal Bloom Detection and Water Monitoring Using IoT Connectivity</h3>
+    <p>Broder, J., Polishak, B., Poppleton, C., Stenner, G., Evans, A.,</p>
+    <span class="tag">Paper</span><span class="tag">IoT</span>
+  </a>
+
+  <a class="card" href="https://doi.org/10.5281/zenodo.21863356" target="_blank" rel="noopener">
+    <h3>Behavioural Biometric Identification Using MIDI Keyboard Performance Signatures</h3>
+    <p>Polishak, B., Evans, A.,</p>
+    <span class="tag">Paper</span><span class="tag">Biometrics</span><span class="tag">ML</span>
+  </a>
+
+
+<!-- PROJECTS -->
 
 <h2 id="projects">Projects</h2>
 <div class="grid">
@@ -18,6 +71,8 @@ title: Home
   </a>
   {% endfor %}
 </div>
+
+
 
 
 <h2 id="contact">Contact</h2>

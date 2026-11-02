@@ -23,4 +23,8 @@ I modified it by replacing the boiling water on top with nichrome wire that runs
 
 ## Results
 
+After some experimenting, I was able to spot particle trails inside the chamber. My radioactive source is Americium-241 from an old smoke detector, which weakly emits alpha particles (exposure to it is safe as long as it's not ingested).
+
+I learned that the trick is to freeze the gel block for several hours and work quickly once you take it out. At regular freezer temperatures (far above dry ice), the block is only usable for about 10 minutes. Beyond that, the alcohol will sublimate instead of supersaturating. It's also important to ensure a perfect seal on the bottom by rubbing petroleum jelly on the seam. If there's even a tiny crack, the cold air and alcohol vapour will leak out.
+
 ![Photo of the cloud chamber]({{ "/assets/img/cloud chamber/chamber.jpg" | relative_url }}){: .img-medium .img-center}
