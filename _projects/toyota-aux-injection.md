@@ -32,17 +32,17 @@ I burned a signal test disk that contained sine wave tracks, left/right audio tr
 
 ![Photo of the optocoupler]({{ "/assets/img/toyota aux injection/optocoupler.jpg" | relative_url }}){: .img-small .img-right}
 
-Since I wanted the comfort of adjusting both left and right volumes with one interface, but I had no stereo potentiometers available, I assembled an optocoupler with one LED facing two photoresistors enclosed in a 3D printed housing. Each resistor routes to ground, so when the LED is off, both signals get attenuated. 
+I wanted the comfort of adjusting both left and right volumes with one interface, but I had no two-channel potentiometers available. To attenuate both channels at once, I assembled an optocoupler with one LED facing two photoresistors, enclosed in a 3D printed housing. Each resistor routes to ground, so when the LED is powered, both signals get attenuated. 
 
 <div style="clear: both;"></div>
 
-Finally, I soldered an AUX jack to the L/R pins in parallel with the CD player lines. This was one of my first microsoldering jobs, so it wasn't very clean!
+Finally, I soldered an AUX jack to the L/R pins in parallel with the CD player lines. This was one of my first microsoldering jobs, so it wasn't very clean. I resoldered it later to get a smoother joint.
 
 
 <div class="img-row" markdown="1">
 
 
-![Soldered aux jack]({{ "/assets/img/toyota aux injection/aux.jpg" | relative_url }}){: .img-medium .img-left}
+![Soldered aux jack]({{ "/assets/img/toyota aux injection/jack.jpg" | relative_url }}){: .img-medium .img-left}
 
 ![Soldered aux jack]({{ "/assets/img/toyota aux injection/injection.jpg" | relative_url }}){: .img-medium .img-right}
 
