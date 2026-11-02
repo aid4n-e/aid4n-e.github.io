@@ -250,7 +250,7 @@ h2 { margin-top: 1.5em; }
   border: 0;
   border-radius: 0;
   opacity: 0.5;
-  filter: blur(16px) saturate(1.8) brightness(0.9);
+  filter: blur(8px) saturate(2) contrast(0.5) brightness(1.1);
   transform: scale(1.1);
 }
 
