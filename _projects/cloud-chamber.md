@@ -1,6 +1,6 @@
 ---
-title: Homemade Cloud Chamber
-summary: Glass cloud chamber built with nichrome wire and a frozen gel pad.
+title: Cloud Chamber
+summary: Glass cloud chamber for viewing particle trails, built with nichrome wire and a frozen gel pad.
 tags: [Electronics, Physics]
 ---
 
@@ -25,6 +25,8 @@ I modified it by replacing the boiling water on top with nichrome wire that runs
 
 After some experimenting, I was able to spot particle trails inside the chamber. My radioactive source is Americium-241 from an old smoke detector, which weakly emits alpha particles (exposure to it is safe as long as it's not ingested).
 
-I learned that the trick is to freeze the gel block for several hours and work quickly once you take it out. At regular freezer temperatures (far above dry ice), the block is only usable for about 10 minutes. Beyond that, the alcohol will sublimate instead of supersaturating. It's also important to ensure a perfect seal on the bottom by rubbing petroleum jelly on the seam. If there's even a tiny crack, the cold air and alcohol vapour will leak out.
+I learned that the trick with using a gel block is keeping it in the freezer for several hours and working quickly once it's taken out. At regular freezer temperatures (far above dry ice), the block is only usable for about 10 minutes. Beyond that, the alcohol will sublimate instead of supersaturating. It's also important to ensure a perfect seal on the bottom by rubbing petroleum jelly on the seam. If there's even a tiny crack, the cold air and alcohol vapour will leak out.
+
+For the nichrome wire, I coiled about a foot of 26 gauge nichrome and passed 5 to 7 volts through it. This got it quite hot for evaporating the alcohol. Of course, it's important to be careful with this as the wire can get red-hot and ignite the vapour if you accidentally use a higher voltage. 
 
 ![Photo of the cloud chamber]({{ "/assets/img/cloud chamber/chamber.jpg" | relative_url }}){: .img-medium .img-center}
