@@ -287,8 +287,8 @@ h2 { margin-top: 1.5em; }
 /* Solid center column with a fade into the video on each side */
 .video-overlay {
   --solid: 1000px;   /* width of the solid center block */
-  --fade: 150px;    /* width of each fade */
-  --edge: 85%;      /* how much page color covers the video right at the block's edge */
+  --fade: 200px;    /* width of each fade */
+  --edge: 25%;      /* how much page color covers the video right at the block's edge */
   position: fixed;
   top: 0;
   bottom: 0;
