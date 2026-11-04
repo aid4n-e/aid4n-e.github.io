@@ -9,7 +9,7 @@
 # (leave it empty) and the player hides itself.
 
 - title: "lo-fi synth r&b"
-  note: "Other than the drums and bass, the synth sound comes from a single recording on the Hydrasynth. I really like the complexity and layering of this tone."
+  note: "The synth sound comes from a single recording on the Hydrasynth. I really like the complexity and layering of this tone."
   tag: ""
   file: /assets/audio/257.mp3
 
@@ -23,7 +23,22 @@
   tag: ""
   file: /assets/audio/liberty.mp3
 
+- title: "bright lo-fi, synth melody"
+  note: "A bitcrushed, optimistic sound."
+  tag: ""
+  file: /assets/audio/pieces.mp3
+  
+- title: "ethereal, jungle, drum & bass"
+  note: "I love early 2000s jungle and d&b! I made this for a friend's fish-themed game jam project."
+  tag: ""
+  file: /assets/audio/junglefishbreak.mp3
+  
+- title: "noise rock, synth"
+  note: "I composed this for a trio arrangement with no bass, so the rhythm guitar occupies the lower range. I really like the contrast with the bright lead."
+  tag: ""
+  file: /assets/audio/nglawesome.mp3
+
 - title: "mellow, piano melody"
-  note: "The tone of this track is heavily inspired by Lena Raine's work on the Celeste soundtrack."
+  note: "One of my earliest works (it shows, I think.) I made this track after feeling inspired by Lena Raine's work."
   tag: ""
   file: /assets/audio/mellow.mp3
