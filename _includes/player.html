@@ -1,0 +1,152 @@
+{% comment %}
+  Music player. Tracks come from _data/tracks.yml.
+  Use it on any page with:  {% include player.html %}
+  Nothing is downloaded until the visitor presses play.
+{% endcomment %}
+{% if site.data.tracks and site.data.tracks.size > 0 %}
+<section class="player" aria-label="Music player">
+  <audio class="player-audio" preload="none"></audio>
+
+  <div class="player-now" aria-live="polite">
+    <div class="player-title">Pick a track</div>
+    <div class="player-note"></div>
+  </div>
+
+  <div class="player-controls">
+    <button type="button" class="player-btn player-prev" aria-label="Previous track">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h2v12H6zM9.5 12l8.5 6V6z"/></svg>
+    </button>
+    <button type="button" class="player-btn player-play" aria-label="Play">
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+    </button>
+    <button type="button" class="player-btn player-next" aria-label="Next track">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
+    </button>
+    <span class="player-time player-cur">0:00</span>
+    <input type="range" class="player-seek" min="0" max="1000" value="0" step="1" aria-label="Seek">
+    <span class="player-time player-dur">0:00</span>
+
+    <div class="player-volume">
+      <input type="range" class="player-vol" min="0" max="100" value="50" step="1" aria-label="Volume">
+    </div>
+  </div>
+
+  <ol class="player-list">
+    {% for t in site.data.tracks %}
+    <li>
+      <button type="button" class="player-track"
+              data-src="{{ t.file | relative_url }}"
+              data-title="{{ t.title | escape }}"
+              data-note="{{ t.note | escape }}">
+        <span class="player-num">{{ forloop.index }}</span>
+        <span class="player-name">{{ t.title }}</span>
+        {% if t.tag %}<span class="player-tag">{{ t.tag }}</span>{% endif %}
+      </button>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+
+<script>
+(function () {
+  document.querySelectorAll('.player').forEach(function (root) {
+    var audio   = root.querySelector('.player-audio');
+    var tracks  = Array.prototype.slice.call(root.querySelectorAll('.player-track'));
+    var titleEl = root.querySelector('.player-title');
+    var noteEl  = root.querySelector('.player-note');
+    var playBtn = root.querySelector('.player-play');
+    var prevBtn = root.querySelector('.player-prev');
+    var nextBtn = root.querySelector('.player-next');
+    var seek    = root.querySelector('.player-seek');
+    var curEl   = root.querySelector('.player-cur');
+    var durEl   = root.querySelector('.player-dur');
+    var volEl   = root.querySelector('.player-vol');
+    var index = -1;
+    var dragging = false;
+
+    function paint() { seek.style.setProperty('--pct', (seek.value / 10) + '%'); }
+
+    function fmt(s) {
+      if (!isFinite(s)) return '0:00';
+      var m = Math.floor(s / 60), r = Math.floor(s % 60);
+      return m + ':' + (r < 10 ? '0' : '') + r;
+    }
+
+    function load(i, autoplay) {
+      index = (i + tracks.length) % tracks.length;
+      var b = tracks[index];
+      audio.src = b.dataset.src;
+      titleEl.textContent = b.dataset.title;
+      noteEl.textContent = b.dataset.note || '';
+      tracks.forEach(function (t, j) { t.classList.toggle('is-active', j === index); });
+      seek.value = 0;
+      paint();
+      curEl.textContent = '0:00';
+      durEl.textContent = '0:00';
+      if (autoplay) { audio.play().catch(function () {}); }
+      if ('mediaSession' in navigator && window.MediaMetadata) {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: b.dataset.title, artist: document.title });
+      }
+    }
+
+    function toggle() {
+      if (index < 0) { load(0, true); }
+      else if (audio.paused) { audio.play().catch(function () {}); }
+      else { audio.pause(); }
+    }
+
+    playBtn.addEventListener('click', toggle);
+    nextBtn.addEventListener('click', function () { load(index < 0 ? 0 : index + 1, true); });
+    prevBtn.addEventListener('click', function () {
+      if (index >= 0 && audio.currentTime > 3) { audio.currentTime = 0; }
+      else { load(index < 0 ? tracks.length - 1 : index - 1, true); }
+    });
+
+    tracks.forEach(function (b, i) {
+      b.addEventListener('click', function () { if (i === index) { toggle(); } else { load(i, true); } });
+    });
+
+    audio.addEventListener('play', function () {
+      root.classList.add('is-playing');
+      playBtn.setAttribute('aria-label', 'Pause');
+    });
+    audio.addEventListener('pause', function () {
+      root.classList.remove('is-playing');
+      playBtn.setAttribute('aria-label', 'Play');
+    });
+    audio.addEventListener('loadedmetadata', function () { durEl.textContent = fmt(audio.duration); });
+    audio.addEventListener('timeupdate', function () {
+      curEl.textContent = fmt(audio.currentTime);
+      if (!dragging && audio.duration) { seek.value = Math.round(audio.currentTime / audio.duration * 1000); paint(); }
+    });
+    audio.addEventListener('ended', function () { load(index + 1, true); });   // plays on to the next track
+    audio.addEventListener('error', function () {
+      if (index >= 0) { noteEl.textContent = 'Could not load this track. Check the file path in _data/tracks.yml.'; }
+    });
+
+    seek.addEventListener('pointerdown', function () { dragging = true; });
+    seek.addEventListener('pointerup',   function () { dragging = false; });
+    seek.addEventListener('input', function () {
+      paint();
+      if (audio.duration) { audio.currentTime = seek.value / 1000 * audio.duration; }
+    });
+
+    // Volume slider: starts at 50%. Hidden on phones, where the hardware volume
+    // buttons are used instead, so the 50% start only applies when it is visible.
+    function paintVol() { volEl.style.setProperty('--pct', volEl.value + '%'); }
+    if (volEl.offsetParent !== null) { audio.volume = volEl.value / 100; }
+    paintVol();
+    volEl.addEventListener('input', function () {
+      audio.volume = volEl.value / 100;
+      paintVol();
+    });
+
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('previoustrack', function () { prevBtn.click(); });
+      navigator.mediaSession.setActionHandler('nexttrack', function () { nextBtn.click(); });
+    }
+  });
+})();
+</script>
+{% endif %}

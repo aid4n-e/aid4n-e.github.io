@@ -1,0 +1,24 @@
+# One entry per track. Audio files go in assets/audio/
+# Fields:
+#   title: shown in the list and the now-playing area
+#   note:  one line about it (tools, what you did, year)
+#   tag:   short label shown on the right of the list (optional)
+#   file:  path to the audio file, starting with /assets/audio/
+#
+# Replace these two examples with your own. Delete this file's entries
+# (leave it empty) and the player hides itself.
+
+- title: "lo-fi synth r&b"
+  note: "Other than the drums and bass, the synth sound comes from a single recording on the Hydrasynth. I love the complexity and layering of this tone."
+  tag: ""
+  file: /assets/audio/257.mp3
+
+- title: "vocals, shoegaze, electronic"
+  note: "This track blends several genres, and uses samples from Sad Eyes - Mary Saxton."
+  tag: ""
+  file: /assets/audio/smile!.mp3
+
+- title: "synthwave, dialogue sampling"
+  note: "I sampled and remixed dialogue from Metal Gear Solid 2 for this track."
+  tag: ""
+  file: /assets/audio/liberty.mp3
