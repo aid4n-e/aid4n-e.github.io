@@ -9,16 +9,21 @@
 # (leave it empty) and the player hides itself.
 
 - title: "lo-fi synth r&b"
-  note: "Other than the drums and bass, the synth sound comes from a single recording on the Hydrasynth. I love the complexity and layering of this tone."
+  note: "Other than the drums and bass, the synth sound comes from a single recording on the Hydrasynth. I really like the complexity and layering of this tone."
   tag: ""
   file: /assets/audio/257.mp3
 
-- title: "vocals, shoegaze, electronic"
-  note: "This track blends several genres, and uses samples from Sad Eyes - Mary Saxton."
+- title: "vocals, dreampop, electronic"
+  note: "This track blends a few genres, and uses samples from Sad Eyes - Mary Saxton."
   tag: ""
   file: /assets/audio/smile!.mp3
 
 - title: "synthwave, dialogue sampling"
-  note: "I sampled and remixed dialogue from Metal Gear Solid 2 for this track."
+  note: "I sampled and remixed dialogue from Metal Gear Solid 2 (one of my favourite games!) for this track."
   tag: ""
   file: /assets/audio/liberty.mp3
+
+- title: "mellow, piano melody"
+  note: "The tone of this track is heavily inspired by Lena Raine's work on the Celeste soundtrack."
+  tag: ""
+  file: /assets/audio/mellow.mp3
