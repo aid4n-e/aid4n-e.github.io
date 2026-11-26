@@ -33,12 +33,17 @@ title: Home
   }
 </script>
 
-<section class="hero">
-  <h1>{{ site.tagline }}</h1>
-  <p>I'm a computer science student with a passion for electronics and art.<br>
+<section class="hero hero-with-photo">
+  <div>
+    <h1>{{ site.tagline }}</h1>
+    <p>I'm a Canadian computer science student with a passion for electronics and art.<br>
     My interests include music & sound design, game development, analog tech, and the outdoors.</p>
-  <!--<p><a class="button" href="{{ '/about' | relative_url }}">About me</a></p> -->
+  </div>
+  <img class="avatar" src="{{ '/assets/img/profile.jpg' | relative_url }}" alt="Photo of Aidan">
+
 </section>
+
+  <!--<p><a class="button" href="{{ '/about' | relative_url }}">About me</a></p> -->
 
 
 
